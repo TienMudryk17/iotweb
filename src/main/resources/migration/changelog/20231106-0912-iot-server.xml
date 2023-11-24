@@ -1,0 +1,41 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+  <changeSet author="Van Tien" id="20231106-0912-dht-11">
+    <createTable tableName="dht_11">
+      <column name="id" type="varchar(255)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="temperature" type="float"/>
+      <column name="humidity" type="float"/>
+      <column name="created_at" type="bigint"/>
+    </createTable>
+  </changeSet>
+  <changeSet id="20231106-0912-light" author="Van Tien">
+    <createTable tableName="light">
+      <column name="id" type="varchar(255)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="digital_read" type="tinyint"/>
+      <column name="created_at" type="bigint"/>
+    </createTable>
+  </changeSet>
+  <changeSet id="20231106-0912-control-mode" author="Van Tien">
+    <createTable tableName="control_mode">
+      <column name="id" type="varchar(255)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="device" type="varchar(255)"/>
+      <column name="operation_mode" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="manual_mode" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_at" type="bigint"/>
+    </createTable>
+  </changeSet>
+</databaseChangeLog>

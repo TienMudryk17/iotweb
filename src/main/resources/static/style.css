@@ -1,0 +1,405 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f6f6f7;
+    color: #ffffff;
+    font-family: 'Segoe UI';
+}
+
+.material-icons-outlined {
+    vertical-align: middle;
+    line-height: 1px;
+    font-size: 30px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 260px 1fr 1fr 1fr;
+    grid-template-rows: 0.2fr 3fr;
+    grid-template-areas: "sidebar header header header" "sidebar main main main";
+    height: 100vh;
+}
+
+.text-in-main {
+    font-size: 40px;
+}
+
+
+/* ---------- HEADER ---------- */
+
+.header {
+    grid-area: header;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px 0 30px;
+    box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35);
+    background: #faf9f9;
+}
+
+.menu-icon {
+    display: none;
+}
+
+.header-right {
+    align-items: flex-end;
+    color: #000000;
+    cursor: pointer;
+}
+
+
+/* ---------- SIDEBAR ---------- */
+
+#sidebar {
+    grid-area: sidebar;
+    height: 100%;
+    background-color: #ffffff;
+    overflow-y: auto;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+
+.sidebar-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px 10px 10px;
+    margin-bottom: 10px;
+}
+
+.sidebar-title>span {
+    display: none;
+}
+
+.sidebar-brand {
+    margin-top: 15px;
+    font-size: 25px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.sidebar-list {
+    padding: 0;
+    margin-top: 13px;
+    list-style-type: none;
+}
+
+.sidebar-list-item {
+    padding: 20px 20px 20px 20px;
+    font-size: 18px;
+    background-color: #ffffff;
+}
+
+.sidebar-list-item:hover {
+    background-color: #444242;
+    cursor: pointer;
+    color: #fff;
+}
+
+.sidebar-list-item>a {
+    text-decoration: none;
+    color: #050505;
+}
+
+.sidebar-list-item:hover a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.sidebar-responsive {
+    display: inline !important;
+    position: absolute;
+    z-index: 12 !important;
+}
+
+
+/* ---------- MAIN ---------- */
+
+.main-container {
+    grid-area: main;
+    overflow-y: auto;
+    padding: 10px 10px;
+    color: #ffffff;
+}
+
+.main-title {
+    display: flex;
+    justify-content: space-between;
+    color: #070707;
+}
+
+.main-cards {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.column.temperature {
+    background-color: lightblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    padding: 10px;
+}
+
+
+/* CSS cho biểu tượng */
+
+.material-icons-outlined {
+    font-size: 34px;
+}
+
+
+/* CSS cho giá trị nhiệt độ */
+
+#temperatureValue {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 35px;
+    /* Cỡ chữ */
+}
+
+.column.humidity {
+    background-color: lightblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    padding: 10px;
+}
+
+
+/* CSS cho giá trị nhiệt độ */
+
+#humidityValue {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 35px;
+    /* Cỡ chữ */
+}
+
+.column.light {
+    background-color: lightblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    padding: 10px;
+}
+
+
+/* CSS cho giá trị nhiệt độ */
+
+#lightValue {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 35px;
+    /* Cỡ chữ */
+}
+
+
+/* .card {
+    display: flex;
+    justify-content: space-around;
+
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px;
+    flex: 0 0 calc(25% - 20px);
+}  */
+
+.column {
+    display: flex;
+    padding: 30px;
+    width: 100%;
+    border: 10px solid rgb(194, 188, 188);
+    border-radius: 50px;
+    margin: 0 50px;
+    font-size: 22px;
+    justify-content: space-around;
+}
+
+.card {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 200px;
+}
+
+.text-black {
+    color: #1d1c1c;
+}
+
+.card-inner>.material-icons-outlined {
+    font-size: 45px;
+}
+
+.charts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.charts-card-left {
+    background-color: #bdbdbd;
+    margin-bottom: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+    -webkit-column-break-inside: avoid;
+    border-radius: 10px;
+    box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+}
+
+.charts-card-right {
+    background-color: #6498a5;
+    margin-bottom: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+    -webkit-column-break-inside: avoid;
+    border-radius: 10px;
+    box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+}
+
+.chart-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ---------- MEDIA QUERIES ---------- */
+
+@media screen and (max-width: 992px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.2fr 3fr;
+        grid-template-areas: "header" "main";
+    }
+    #sidebar {
+        display: none;
+    }
+    .menu-icon {
+        display: inline;
+    }
+    .sidebar-title>span {
+        display: inline;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .main-cards {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 0;
+    }
+    .charts {
+        grid-template-columns: 1fr;
+        margin-top: 10px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .heaer-left {
+        display: none;
+    }
+}
+
+.profile-image {
+    width: 44px;
+    height: 44px;
+}
+
+
+/* .profile-image img {
+    width: 44px;
+    height: 44px;
+    border-radius: 100%;
+} */
+.navbar-profile {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.navbar-profile-image {
+    margin-left: 20px; /* Khoảng cách giữa ảnh và chữ */
+}
+
+
+.navbar-profile-image img {
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    border: 3px solid #09dacf;
+    margin: 0 0 40px -50px;
+}
+
+.availability-status {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    border: 2px solid #ffffff;
+    bottom: 5px;
+    right: -5px;
+}
+
+.navbar-profile-image.availability-status.online {
+    background: #09dacf;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-top: 70px;
+    list-style: none;
+    align-items: center;
+    margin-left: 1020px;
+}
+
+
+/*On Off led*/
+
+.btn-on,
+.btn-off {
+    font-size: large;
+    color: black;
+    border: solid 3px rgb(0, 90, 0);
+    border-radius: 20px;
+    cursor: pointer;
+    /* Con trỏ là tay khi di chuột qua */
+    margin-right: 15px;
+}
+
+.btn-off {
+    padding: 16px 23px;
+}
+
+.btn-on {
+    padding: 16px 26px;
+}
+
+.toggle-light {
+    font-size: 25px;
+    font-weight: 600;
+    color: black;
+    padding: 30px;
+}
+
+.space-light {
+    text-align: center;
+}
+
+.light.on {
+    color: yellow;
+}

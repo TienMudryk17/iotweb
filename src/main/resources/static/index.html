@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>IOT Project</title>
+    <!-- Iconos -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <!--     <link rel="stylesheet" href="styles.css"> -->
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!--    <script>-->
+<!--        document.addEventListener('DOMContentLoaded', function () {-->
+<!--            // Fetch data from the API-->
+<!--            fetch('https://your-api-endpoint.com/api/v1/dhts')-->
+<!--                .then(response => response.json())-->
+<!--                .then(data => {-->
+<!--                    // Update temperature and humidity values-->
+<!--                    updateTemperature(data.temperature);-->
+<!--                    updateHumidity(data.humidity);-->
+<!--                })-->
+<!--                .catch(error => console.error('Error fetching sensor data:', error));-->
+<!--        });-->
+
+<!--        function updateTemperature(temperature) {-->
+<!--            // Update the temperature value on the dashboard-->
+<!--            document.getElementById('temperatureValue').textContent = temperature + ' °C';-->
+<!--        }-->
+
+<!--        function updateHumidity(humidity) {-->
+<!--            // Update the humidity value on the dashboard-->
+<!--            document.getElementById('humidityValue').textContent = humidity + ' %';-->
+<!--        }-->
+<!--    </script>-->
+</head>
+
+<body>
+<div class="grid-container">
+    <header class="header">
+        <nav class="header-right">
+            <div class="navbar">
+                <ul class="navbar-nav">
+                    <li class="navbar-item">
+                        <a class="navbar-link nav-profile">
+                            <div class="navbar-profile-image">
+                                <img src="images/face1.jpg" alt="Description"
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <aside id="sidebar">
+        <div class="sidebar-title">
+            <div class="sidebar-brand">
+                <span class="material-icons-outlined"></span> My Project
+            </div>
+            <span class="material-icons-outlined " onclick="closeSidebar()">close</span>
+        </div>
+
+        <ul class="sidebar-list">
+            <li class="sidebar-list-item">
+                <a data-toggle="list" href="#">
+                    <span class="material-icons-outlined">dashboard</span> Dashboard
+                </a>
+            </li>
+            <li class="sidebar-list-item">
+                <a target="_blank" data-toggle="list" href="#item-profile">
+                    <span class="material-icons-outlined">account_circle</span> Profile
+                </a>
+            </li>
+            <li class="sidebar-list-item" data-toggle="list" href="#item-historydata">
+                <a href="data.html" target="_blank">
+                    <span class="material-icons-outlined">description</span> History Data
+                </a>
+            </li>
+            <li class="sidebar-list-item" data-toggle="list" href="#item-historyactive">
+                <a href="action.html" target="_blank">
+                    <span class="material-icons-outlined">toggle_on</span> History Active
+                </a>
+            </li>
+            <!-- <li class="sidebar-list-item" data-toggle="list" href="">
+                <a href="#" target="_blank">
+                    <span class="material-icons-outlined">groups</span>
+                </a>
+            </li> -->
+        </ul>
+    </aside>
+    <main class="main-container" id="item-dashboard">
+        <div class="main-title">
+            <h2 class="text-in-main">Dashboard</h2>
+        </div>
+        <div class="main-cards">
+            <div class="card">
+                <div class="column temperature text-black" id="temperatureColumn">
+                    <h2>Nhiệt độ: <span class="material-icons-outlined">thermostat</span></h2>
+                    <h1 class="text-black" id="temperatureValue"> °C</h1>
+                </div>
+                <div class="column humidity text-black" id="humidityColumn">
+                    <h2>Độ ẩm: <span class="material-icons-outlined">cloud</span></h2>
+                    <h1 class="text-black" id="humidityValue"> %</h1>
+                </div>
+                <div class="column light text-black" id="lightColumn">
+                    <h2>Ánh sáng: <span class="material-icons-outlined">light_mode</span></h2>
+                    <h1 class="text-black" id="lightValue"> lux</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="charts">
+            <div class="charts-card-left">
+                <h2 class="chart-title text-black">Đồ thị (nhiệt độ, độ ẩm, ánh sáng)</h2>
+                <canvas id="sensorChart" width="550" height="350"></canvas>
+            </div>
+
+            <div class="charts-card-right">
+                <h2 class="chart-title">Action Light</h2>
+                <div class="toggle-light">Ligth 1:
+                    <div class="space-light">
+                        <button class="btn-on" id="btnOn1" onclick="toggleLED('btnOn1')">ON</button>
+                        <button class="btn-off" id="btnOff1" onclick="toggleLED('btnOff1')">OFF</button>
+                        <i class="fas fa fa-lightbulb" id="light1"></i>
+                    </div>
+                </div>
+                <div class="toggle-light">Ligth 2:
+                    <div class="space-light">
+                        <button class="btn-on" id="btnOn2" onclick="toggleLED('btnOn2')">ON</button>
+                        <button class="btn-off" id="btnOff2" onclick="toggleLED('btnOff2')">OFF</button>
+                        <i class="fas fa fa-lightbulb" id="light2s"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="profile-menu" id="item-profile">
+        <header class="header">
+            Hello every body
+            <div>
+            </div>
+        </header>
+    </div>
+</div>
+<div class="bottom">
+    <!-- <canvas id="sensorChart" width="550" height="350"></canvas> -->
+</div>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.5/apexcharts.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+
+</html>

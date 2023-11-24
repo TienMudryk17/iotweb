@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Data</title>
+    <link rel="icon" href="../../src/main/resources/static/images/favicon_data.ico" type="image/x-icon">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid black;
+        }
+
+        th {
+            background-color: #a39898;
+        }
+
+        #searchInput {
+            padding: 8px 20px 8px 20px;
+            margin: 10px 10px 10px 40px;
+            border-radius: 20px;
+            border: 1px solid rgb(110, 110, 110);
+            width: 200px;
+        }
+
+        #searchButton {
+            background-color: rgb(30, 172, 30);
+            color: white;
+            padding: 10px 15px 10px 15px;
+            margin-left: -10px;
+            cursor: pointer;
+            border: 2px solid rgb(72, 99, 11);
+            border-radius: 20px;
+            font-size: 10px;
+        }
+
+        #searchButton:hover {
+            background-color: rgb(192, 127, 127);
+        }
+
+        #searchButton:active {
+            background-color: rgb(192, 127, 127);
+            /* Màu nền khi nút được nhấn */
+            transform: scale(0.85);
+            /* Thu nhỏ kích thước nút khi được nhấn */
+        }
+
+        .search-container {}
+    </style>
+</head>
+
+<body>
+<h1>Data</h1>
+<p>Dữ liệu nhiệt độ, độ ẩm, ánh sáng theo thời gian</p>
+<div class="search-container">
+    <input type="text" id="searchInput" placeholder="search..." onkeypress="searchOnEnter(event)">
+    <button id="searchButton" onclick="searchData()">Search</button>
+</div>
+<table>
+    <thead>
+    <tr>
+        <th>Thời gian</th>
+        <th>Nhiệt độ (&deg;C)</th>
+        <th>Độ ẩm (%)</th>
+        <th>Ánh sáng (Lux)</th>
+    </tr>
+    </thead>
+    <tbody id="data-body">
+    <!-- Dữ liệu sẽ được thêm vào đây bằng JavaScript -->
+    </tbody>
+</table>
+
+<script>
+    function generateRandomData() {
+        var time = new Date().toLocaleTimeString();
+        var temperature = Math.floor(Math.random() * (50 + 10 + 1)) - 10;
+        var humidity = Math.floor(Math.random() * (100 - 50 + 1)) + 50;
+        var light = Math.floor(Math.random() * (1000 - 100 + 1)) + 100;
+
+        return {
+            time: time,
+            temperature: temperature,
+            humidity: humidity,
+            light: light
+        };
+    }
+
+    function updateTable() {
+        var data = generateRandomData();
+        var tableRow = document.createElement("tr");
+
+        var timeCell = document.createElement("td");
+        timeCell.textContent = data.time;
+        tableRow.appendChild(timeCell);
+
+        var temperatureCell = document.createElement("td");
+        temperatureCell.textContent = data.temperature;
+        tableRow.appendChild(temperatureCell);
+
+        var humidityCell = document.createElement("td");
+        humidityCell.textContent = data.humidity;
+        tableRow.appendChild(humidityCell);
+
+        var lightCell = document.createElement("td");
+        lightCell.textContent = data.light;
+        tableRow.appendChild(lightCell);
+
+        document.getElementById("data-body").appendChild(tableRow);
+    }
+
+    setInterval(updateTable, 5000); // Cập nhật bảng mỗi 5 giây
+    // Hàm để loại bỏ dấu từ chuỗi
+    function removeDiacritics(text) {
+        return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+    //search
+    function searchData() {
+        var input = removeDiacritics(document.getElementById("searchInput").value.toLowerCase());
+        var tableRows = document.getElementById("data-body").getElementsByTagName("tr");
+
+        for (var i = 0; i < tableRows.length; i++) {
+            var timeCell = removeDiacritics(tableRows[i].getElementsByTagName("td")[0].textContent.toLowerCase());
+            var actionCell = removeDiacritics(tableRows[i].getElementsByTagName("td")[1].textContent.toLowerCase());
+            var valueCell = removeDiacritics(tableRows[i].getElementsByTagName("td")[2].textContent.toLowerCase());
+
+            if (
+                timeCell.includes(input) ||
+                actionCell.includes(input) ||
+                valueCell.includes(input)
+            ) {
+                tableRows[i].style.display = "";
+            } else {
+                tableRows[i].style.display = "none";
+            }
+        }
+    }
+
+    //Click Enter cũng có thể tìm kiếm
+    function searchOnEnter(event) {
+        if (event.key === "Enter") {
+            searchData();
+        }
+    }
+</script>
+</body>
+
+</html>
